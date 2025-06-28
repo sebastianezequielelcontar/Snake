@@ -1,8 +1,3 @@
-// 🎵 Sonidos desde URLs
-const eatSound = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_6594e2d5d7.mp3?filename=pop-94319.mp3");
-const gameOverSound = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_8f7d38c7e8.mp3?filename=game-over-arcade-6435.mp3");
-const startSound = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_f88c18ff0e.mp3?filename=start-13691.mp3");
-
 // 🎮 Elementos del DOM
 const startScreen = document.getElementById("start-screen");
 const gameContainer = document.getElementById("game-container");
@@ -25,7 +20,6 @@ scoreDisplay.innerHTML = `Puntaje: 0 | 🏆 Mejor: ${highScore}`;
 
 // ▶️ Comenzar juego
 startButton.addEventListener("click", () => {
-  startSound.play();
   startScreen.style.display = "none";
   gameContainer.style.display = "block";
   startGame();
@@ -107,7 +101,6 @@ function draw() {
 
   // Comer comida
   if (headX === food.x && headY === food.y) {
-    eatSound.play();
     score++;
     updateScore();
     placeFood();
@@ -131,10 +124,26 @@ function gameOver() {
   gameContainer.style.display = "none";
   gameOverScreen.style.display = "flex";
   finalScore.innerText = `Tu puntaje fue: ${score}`;
-  gameOverSound.play();
 }
 
 // 🧠 Verificar colisión con el cuerpo
 function collision(head, body) {
   return body.some(part => part.x === head.x && part.y === head.y);
 }
+
+// Controles táctiles
+const controls = document.querySelectorAll(".control");
+
+controls.forEach(button => {
+  button.addEventListener("click", () => {
+    const dir = button.dataset.dir;
+    if (
+      (dir === "LEFT" && direction !== "RIGHT") ||
+      (dir === "UP" && direction !== "DOWN") ||
+      (dir === "RIGHT" && direction !== "LEFT") ||
+      (dir === "DOWN" && direction !== "UP")
+    ) {
+      direction = dir;
+    }
+  });
+});

@@ -6,25 +6,30 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #111;
+  background-color: #0d0d0d;
   color: #fff;
   text-align: center;
   padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1, h2 {
   margin-bottom: 20px;
+  color: #4caf50;
 }
 
 button {
   background-color: #4caf50;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 24px;
   color: white;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   cursor: pointer;
-  border-radius: 8px;
-  transition: background 0.3s;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+  margin-top: 10px;
 }
 
 button:hover {
@@ -33,18 +38,44 @@ button:hover {
 
 #gameCanvas {
   background-color: #000;
-  border: 4px solid #4caf50;
+  border: 5px solid #4caf50;
   margin-top: 20px;
 }
 
 #score {
-  margin-bottom: 10px;
+  margin: 15px 0;
   font-size: 18px;
+  color: #ddd;
 }
 
-#start-screen, #game-over-screen {
+#start-screen,
+#game-over-screen {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 50vh;
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 📱 Mobile responsive */
+@media (max-width: 480px) {
+  #gameCanvas {
+    width: 300px;
+    height: 300px;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  #score {
+    font-size: 16px;
+  }
 }
